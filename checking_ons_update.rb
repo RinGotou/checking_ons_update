@@ -80,18 +80,9 @@ def processing_update_info(table)
     end    
 end
 
-puts 'Connect to ONScripter site...'
-site_html = nil
 begin
+    puts 'Connect to ONScripter site...'
     site_html = Nokogiri::HTML.parse(open($site_url))
-rescue => exception
-    puts exception.message
-    puts 'Press enter to exit.'
-    gets
-    exit
-end
-
-begin
     puts 'Successful. Reading info...'
     cache = site_html.xpath('//table')
     processing_update_info(cache[0])
